@@ -1,0 +1,5 @@
+package com.sample;
+
+public enum Movie {
+HORROR,COMEDY, MYSTERY, DRAMA, SCIFI, HISTORICAL, DOCUMENTARY, ACTION
+}
