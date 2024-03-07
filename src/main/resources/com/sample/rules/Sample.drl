@@ -1,0 +1,289 @@
+package com.sample.rules;
+import com.sample.Room;
+import com.sample.Age;
+import com.sample.Status;
+import com.sample.Duration;
+import com.sample.Level;
+import com.sample.Team;
+import com.sample.Type;
+import com.sample.Activity;
+import com.sample.Goal;
+import com.sample.Genre;
+ 
+rule "Određivanje starosti igrača "
+    when
+    t: Team (years <=14)
+        r : Room(age==Age.ADULTS)
+    then
+        r.setAge(Age.CHILDREN);
+        update( r );
+end
+
+rule "Broj soba na lokaciji kada jedan tim hoće da odigra povezane sobe"
+    when
+        r : Room(duration == Duration.HOURS && event==false && numberOfRoomsOnLocation == null)
+    then
+        r.setNumberOfRoomsOnLocation (2l);
+        update( r );
+end
+
+rule "Broj soba na lokaciji za manji događaj"
+    when
+        t: Team (numberOfPlayers <= 12 && numberOfPlayers >= 6) 
+        r : Room(event==true && numberOfRoomsOnLocation == null)
+    then
+        r.setNumberOfRoomsOnLocation (2l);
+        update( r );
+end
+
+rule "Broj soba na lokaciji za srednji događaj"
+    when
+    t: Team (numberOfPlayers >= 12 && numberOfPlayers <= 18)
+        r : Room(event==true && numberOfRoomsOnLocation == null)
+    then
+        r.setNumberOfRoomsOnLocation (3l);
+        update( r );
+end
+
+rule "Broj soba na lokaciji za veliki događaj"
+    when
+    t:Team (numberOfPlayers >= 18 && numberOfPlayers <= 24)
+        r : Room(event==true  && numberOfRoomsOnLocation == null)
+    then
+        r.setNumberOfRoomsOnLocation (4l);
+        update( r );
+end
+
+rule "Potpuni početnici"
+    when
+     t: Team (gamesPlayed==0 && status==null)
+       
+    then
+        t.setStatus (Status.BEGINNER);
+        update( t );
+        
+end
+
+rule "početnici"
+    when
+    t: Team (gamesPlayed<=5 && gamesPlayed>=1 && (gamesSolved==0 || gamesSolved ==1) && status==null)
+      
+    then
+        t.setStatus (Status.BEGINNER);
+        update( t );
+end
+
+
+rule "status:igrač u vidu uspеšnog početnika"
+    when
+    t:Team (gamesPlayed<=5 && gamesPlayed>=1 && gamesSolved>=2 && status==null)
+        
+    then
+        t.setStatus (Status.INTERMEDIATE);
+        update( t );
+end
+
+rule "status:igrač bez obzira na ishod"
+    when
+    t:Team (gamesPlayed>5 && gamesPlayed<=10 && status==null)
+       
+    then
+        t.setStatus (Status.INTERMEDIATE);
+        update( t );
+end
+
+rule "iskusan, a ne i preterano dobar"
+    when
+    t:Team (gamesPlayed>10 && gamesPlayed<=15 && gamesSolved <= 7 && status==null)
+      
+    then
+        t.setStatus (Status.INTERMEDIATE);
+        update( t );
+end
+
+rule "iskusan i dobar"
+    when
+    t:Team (gamesPlayed>10 && gamesPlayed<=15 && gamesSolved > 7 && status==null)
+      
+    then
+        t.setStatus (Status.EXPERT);
+        update( t );
+end
+
+rule "veoma iskusan"
+    when
+       t:Team (gamesPlayed>15 && status==null)
+       
+    then
+        t.setStatus (Status.EXPERT);
+        update( t );
+end
+
+rule "lake sobe jer su pocetnici"
+    when
+    t: Team(status == Status.BEGINNER)
+        r : Room(event==false && level==null )
+    then
+        r.setLevel (Level.EASY);
+        update( r );
+end
+
+rule "lake sobe jer su deca"
+    when
+        r : Room(age==Age.CHILDREN && event==false && level==null )
+    then
+        r.setLevel (Level.EASY);
+        update( r );
+end
+
+rule "srednje sobe"
+    when
+    t:Team (status == Status.INTERMEDIATE && numberOfPlayers<6 )
+        r : Room( age==Age.ADULTS && event==false && level==null )
+    then
+        r.setLevel (Level.MEDIUM);
+        update( r );
+end
+
+rule "teske sobe za velike timove srednje jacine"
+    when
+    t:Team(status == Status.EXPERT )
+        r : Room(age==Age.ADULTS && event==false && level==null)
+    then
+        r.setLevel (Level.HARD);
+        update( r );
+end
+
+rule "teske sobe za eksperte"
+    when
+    t: Team (status==Status.INTERMEDIATE  && numberOfPlayers==6)
+        r : Room(age==Age.ADULTS && event==false && level==null)
+    then
+        r.setLevel (Level.HARD);
+        update( r );
+end
+
+rule "tip tima takmicari 1"
+    when
+     t: Team (goal == Goal.WINNING && teamwork == false && type==null)
+    then
+        t.setType (Type.COMPETITIVE);
+        update( t);
+end
+
+rule "tip tima takmicari 2"
+    when
+     t: Team (goal == Goal.WINNING && teamwork == true && (activityToLike == Activity.PUBQUIZ || activityToHate == Activity.KARAOKE) && type==null)
+    then
+        t.setType (Type.COMPETITIVE);
+        update( t);
+end
+
+rule "tip tima takmicari 3"
+    when
+     t: Team (goal == Goal.EXCITEMENT && teamwork == false && activityToLike!=Activity.KARAOKE && type==null)
+    then
+        t.setType (Type.COMPETITIVE);
+        update( t);
+end
+
+rule "tip tima avanturisti 1"
+    when
+     t: Team ((goal == Goal.EXCITEMENT || goal==Goal.ACTION) && teamwork==false && type==null)
+    then
+        t.setType (Type.ADVENTUROUS);
+        update( t);
+end
+
+rule "tip tima avanturisti 2"
+    when
+     t: Team ((goal == Goal.EXCITEMENT || goal==Goal.ACTION) && teamwork==true && activityToLike==Activity.KARAOKE && type==null)
+    then
+        t.setType (Type.ADVENTUROUS);
+        update( t);
+end
+
+rule "tip tima avanturisti 3"
+    when
+     t: Team ((goal == Goal.EXCITEMENT || goal==Goal.ACTION) && teamwork==true && (activityToHate==Activity.PUBQUIZ || activityToLike==Activity.PAINTBALL) && type==null)
+    then
+        t.setType (Type.ADVENTUROUS);
+        update( t);
+end
+
+rule "tip tima provod 1"
+    when
+     t: Team (goal == Goal.FUN  && teamwork==true &&  type==null)
+    then
+        t.setType (Type.FUNNY);
+        update( t);
+end
+
+rule "tip tima provod 2"
+    when
+     t: Team (goal == Goal.FUN  && teamwork==false && activityToLike != Activity.PUBQUIZ && type==null)
+    then
+        t.setType (Type.FUNNY);
+        update( t);
+end
+
+rule "tip tima provod 3"
+    when
+     t: Team (goal == Goal.EXCITEMENT  && teamwork==true && activityToLike != Activity.PUBQUIZ && activityToHate != Activity.KARAOKE && type==null)
+    then
+        t.setType (Type.FUNNY);
+        update( t);
+end
+
+rule "tip tima takmicari 4"
+    when
+     t: Team (goal == Goal.FUN  && teamwork==false && activityToLike == Activity.PUBQUIZ && type==null)
+    then
+        t.setType (Type.COMPETITIVE);
+        update( t);
+end
+
+rule "tip tima avanturisti 4"
+    when
+     t: Team (goal == Goal.WINNING  && teamwork==true && activityToLike == Activity.PAINTBALL && activityToHate!=Activity.KARAOKE && type==null)
+    then
+        t.setType (Type.ADVENTUROUS);
+        update( t);
+end
+
+rule "tip tima provod 4"
+    when
+     t: Team (goal == Goal.WINNING  && teamwork==true && (activityToLike == Activity.KARAOKE || activityToLike==Activity.GAMESCLUB) && type==null)
+    then
+        t.setType (Type.FUNNY);
+        update( t);
+end
+
+rule "tip tima provod 5"
+    when
+     t: Team (goal == Goal.ACTION  && teamwork==true && (activityToLike == Activity.KARAOKE || activityToLike==Activity.GAMESCLUB) && activityToHate!=Activity.PUBQUIZ && type==null)
+    then
+        t.setType (Type.FUNNY);
+        update( t);
+end
+
+rule "tip tima takmicari 5"
+    when
+     t: Team (goal == Goal.ACTION  && teamwork==true && activityToLike == Activity.PUBQUIZ  && activityToHate!=Activity.PUBQUIZ && type==null)
+    then
+        t.setType (Type.COMPETITIVE);
+        update( t);
+end
+
+
+
+rule "konacan odabir zanra sobe"
+when
+    g : Genre() 
+    r: Room(genre==null) 
+then
+    String finalGenre = r.determineGenre(g);
+   r.setGenre(finalGenre);
+    update(r);
+    
+end
