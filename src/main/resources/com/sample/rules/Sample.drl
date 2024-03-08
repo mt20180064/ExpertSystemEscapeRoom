@@ -275,6 +275,296 @@ rule "tip tima takmicari 5"
         update( t);
 end
 
+rule "ako je odabran horor film"
+no-loop true
+    when
+     g: Genre (movie==Movie.HORROR)
+    then
+        g.setHorror(g.getHorror()+3);
+        g.setMysterious(g.getMysterious()+1);
+        g.setDetective(g.getDetective()+1);
+        g.setAmbiental(g.getAmbiental()+1);
+        update( g);
+end
+
+rule "ako je odabrana komedija"
+no-loop true
+    when
+     g: Genre (movie==Movie.COMEDY)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setDetective(g.getDetective()+1);
+        g.setAmbiental(g.getAmbiental()+1);
+        g.setSpecific(g.getSpecific()+2);
+        update( g);
+end
+
+rule "ako je odabrana misterija"
+no-loop true
+    when
+     g: Genre (movie==Movie.MYSTERY)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setMysterious(g.getMysterious()+3);
+        g.setDetective(g.getDetective()+2);
+        g.setAmbiental(g.getAmbiental()+1);
+        update( g);
+end
+
+rule "ako je odabrana drama"
+no-loop true
+    when
+     g: Genre (movie==Movie.DRAMA)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setMysterious(g.getMysterious()+1);
+        g.setThematic(g.getThematic()+1);
+        g.setAmbiental(g.getAmbiental()+1);
+        g.setSpecific(g.getSpecific()+2);
+        update( g);
+end
+
+rule "ako je odabrana fantastika"
+no-loop true
+    when
+     g: Genre (movie==Movie.SCIFI)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setMysterious(g.getMysterious()+1);
+        g.setDetective(g.getDetective()+1);
+        g.setAmbiental(g.getAmbiental()+2);
+        g.setThematic(g.getThematic()+2);
+        g.setSpecific(g.getSpecific()+2);
+        update( g);
+end
+
+rule "ako je odabran istorijski film"
+no-loop true
+    when
+     g: Genre (movie==Movie.HISTORICAL)
+    then
+        g.setMysterious(g.getMysterious()+1);
+        g.setDetective(g.getDetective()+2);
+        g.setAmbiental(g.getAmbiental()+1);
+        g.setThematic(g.getThematic()+2);
+        update( g);
+end
+
+rule "ako je odabran dokumentarac"
+no-loop true
+    when
+     g: Genre (movie==Movie.DOCUMENTARY)
+    then
+        g.setMysterious(g.getMysterious()+1);
+        g.setDetective(g.getDetective()+1);
+        g.setAmbiental(g.getAmbiental()+1);
+        g.setThematic(g.getThematic()+2);
+        update( g);
+end
+
+rule "ako je odabrana akcija"
+no-loop true
+    when
+     g: Genre (movie==Movie.ACTION)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setMysterious(g.getMysterious()+1);
+        g.setDetective(g.getDetective()+2);
+        g.setSpecific(g.getSpecific()+2);
+        update( g);
+end
+
+rule "ako je odabrana knjiga lovac u zitu"
+no-loop true
+    when
+     g: Genre (book==Book.CATCHER_IN_THE_RYE)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setMysterious(g.getMysterious()+2);
+        g.setDetective(g.getDetective()+2);
+        g.setSpecific(g.getSpecific()+2);
+        g.setAmbiental(g.getAmbiental()+1);
+        update( g);
+end
+
+rule "ako je odabrana knjiga Zlocin i kazna"
+no-loop true
+    when
+     g: Genre (book==Book.CRIME_AND_THE_PUNISHMENT)
+    then
+        g.setHorror(g.getHorror()+2);
+        g.setMysterious(g.getMysterious()+3);
+        g.setDetective(g.getDetective()+3);
+        g.setSpecific(g.getSpecific()+1);
+        g.setAmbiental(g.getAmbiental()+1);
+        update( g);
+end
+
+rule "ako je odabrana knjiga Da Vincijev kod"
+no-loop true
+    when
+     g: Genre (book==Book.THE_DA_VINCI_CODE)
+    then
+        g.setHorror(g.getHorror()+2);
+        g.setMysterious(g.getMysterious()+3);
+        g.setDetective(g.getDetective()+2);
+        g.setSpecific(g.getSpecific()+1);
+        g.setAmbiental(g.getAmbiental()+2);
+        update( g);
+end
+
+rule "ako je odabrana knjiga gordost i predrasude"
+no-loop true
+    when
+     g: Genre (book==Book.PRIDE_AND_PREJUDICE)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setMysterious(g.getMysterious()+2);
+        g.setDetective(g.getDetective()+1);
+        g.setSpecific(g.getSpecific()+1);
+        g.setAmbiental(g.getAmbiental()+2);
+        g.setThematic(g.getThematic()+1);
+        update( g);
+end
+
+rule "ako je odabrana knjiga dnevnik Ane Frank"
+no-loop true
+    when
+     g: Genre (book==Book.DIARY_OF_ANNE_FRANK)
+    then
+        g.setHorror(g.getHorror()+2);
+        g.setMysterious(g.getMysterious()+2);
+        g.setDetective(g.getDetective()+2);
+        g.setAmbiental(g.getAmbiental()+1);
+        g.setThematic(g.getThematic()+2);
+        update( g);
+end
+
+rule "ako je odabrana knjiga gospodar prstenova"
+no-loop true
+    when
+     g: Genre (book==Book.THE_LORD_OF_THE_RINGS)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setMysterious(g.getMysterious()+2);
+        g.setDetective(g.getDetective()+1);
+        g.setSpecific(g.getSpecific()+2);
+        g.setAmbiental(g.getAmbiental()+2);
+        g.setThematic(g.getThematic()+2);
+        update( g);
+end
+
+rule "ako je tema za debatovanje politika"
+no-loop true
+    when
+     g: Genre (debateTopic==DebateTopic.POLITICS)
+    then
+        g.setMysterious(g.getMysterious()+1);
+        g.setDetective(g.getDetective()+1);
+        update( g);
+end
+
+rule "ako je tema za debatovanje istorija"
+no-loop true
+    when
+     g: Genre (debateTopic==DebateTopic.HISTORY)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setMysterious(g.getMysterious()+1);
+        g.setDetective(g.getDetective()+1);
+        g.setAmbiental(g.getAmbiental()+2);
+        g.setThematic(g.getThematic()+1);
+        update( g);
+end
+
+rule "ako je tema za debatovanje filozofija"
+no-loop true
+    when
+     g: Genre (debateTopic==DebateTopic.PHYLOSOPHY)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setMysterious(g.getMysterious()+2);
+        g.setDetective(g.getDetective()+2);
+        g.setSpecific(g.getSpecific()+1);
+        g.setAmbiental(g.getAmbiental()+1);
+        update( g);
+end
+
+rule "ako je tema za debatovanje umetnost"
+no-loop true
+    when
+     g: Genre (debateTopic==DebateTopic.ARTS)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setMysterious(g.getMysterious()+2);
+        g.setDetective(g.getDetective()+2);
+        g.setSpecific(g.getSpecific()+2);
+        g.setAmbiental(g.getAmbiental()+3);
+        update( g);
+end
+
+rule "ako je odabrana slika prirode"
+no-loop true
+    when
+     g: Genre (picture==Picture.NATURAL)
+    then
+        g.setMysterious(g.getMysterious()+1);
+        g.setDetective(g.getDetective()+2);
+        g.setSpecific(g.getSpecific()+2);
+        g.setAmbiental(g.getAmbiental()+2);
+        update( g);
+end
+
+rule "ako je odabrana slika jednostavnog enterijera "
+no-loop true
+    when
+      g: Genre (picture==Picture.SIMPLE)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setMysterious(g.getMysterious()+2);
+        g.setDetective(g.getDetective()+2);
+        g.setSpecific(g.getSpecific()+1);
+        
+        update( g);
+end
+
+rule "ako je odabrana jeziva slika"
+no-loop true
+    when
+     g: Genre (picture==Picture.CREEPY)
+    then
+        g.setHorror(g.getHorror()+3);
+        g.setMysterious(g.getMysterious()+2);
+        g.setDetective(g.getDetective()+2);
+        g.setSpecific(g.getSpecific()+1);
+        g.setAmbiental(g.getAmbiental()+1);
+        update( g);
+end
+
+rule "ako je odabrana slika sa tehnologijom"
+no-loop true
+    when
+     g: Genre (picture==Picture.TECH)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setMysterious(g.getMysterious()+2);
+        g.setDetective(g.getDetective()+3);
+        g.setSpecific(g.getSpecific()+3);
+        update( g);
+end
+
+rule "ako je odabrana slika kao iz bajke"
+no-loop true
+    when
+     g: Genre (picture==Picture.FAIRYTALE)
+    then
+        g.setHorror(g.getHorror()+1);
+        g.setMysterious(g.getMysterious()+3);
+        g.setDetective(g.getDetective()+2);
+        g.setSpecific(g.getSpecific()+1);
+        g.setAmbiental(g.getAmbiental()+2);
+        update( g);
+end
 
 
 rule "konacan odabir zanra sobe"

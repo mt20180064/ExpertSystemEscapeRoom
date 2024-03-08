@@ -34,8 +34,11 @@ public class DroolsTest {
         	t.setActivityToHate(Activity.PAINTBALL);
         	t.setActivityToLike(Activity.GAMESCLUB);
         	
-        	g.setAmbiental(1);
-        	g.setMysterious(2);
+        	g.setMovie(Movie.MYSTERY);
+        	g.setBook(Book.PRIDE_AND_PREJUDICE);
+        	g.setDebateTopic(DebateTopic.HISTORY);
+        	g.setPicture(Picture.CREEPY);
+        	
         	
         	if (t.getNumberOfPlayers()>6 && !r.isEvent()) {
         		throw new Exception("Maksimalan broj ljudi koji moze igrati jednu igru je 6. Ukoliko vas je vise i hocete da rezervisete dve, to se gleda kao dogadjaj.");
