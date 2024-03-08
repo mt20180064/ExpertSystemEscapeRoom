@@ -1,4 +1,4 @@
-package com.sample;
+package com.sample.main;
 
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;

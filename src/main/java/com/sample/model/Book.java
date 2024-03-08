@@ -1,4 +1,4 @@
-package com.sample;
+package com.sample.model;
 
 public enum Book {
    CATCHER_IN_THE_RYE, CRIME_AND_THE_PUNISHMENT, THE_DA_VINCI_CODE, PRIDE_AND_PREJUDICE, DIARY_OF_ANNE_FRANK, THE_LORD_OF_THE_RINGS

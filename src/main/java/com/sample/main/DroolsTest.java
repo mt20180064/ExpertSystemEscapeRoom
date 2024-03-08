@@ -1,8 +1,19 @@
-package com.sample;
+package com.sample.main;
 
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+
+import com.sample.model.Activity;
+import com.sample.model.Book;
+import com.sample.model.DebateTopic;
+import com.sample.model.Duration;
+import com.sample.model.Genre;
+import com.sample.model.Goal;
+import com.sample.model.Movie;
+import com.sample.model.Picture;
+import com.sample.model.Room;
+import com.sample.model.Team;
 
 /**
  * This is a sample class to launch a rule.

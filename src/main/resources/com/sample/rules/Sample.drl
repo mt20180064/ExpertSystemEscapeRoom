@@ -1,14 +1,14 @@
 package com.sample.rules;
-import com.sample.Room;
-import com.sample.Age;
-import com.sample.Status;
-import com.sample.Duration;
-import com.sample.Level;
-import com.sample.Team;
-import com.sample.Type;
-import com.sample.Activity;
-import com.sample.Goal;
-import com.sample.Genre;
+import com.sample.model.Room;
+import com.sample.model.Age;
+import com.sample.model.Status;
+import com.sample.model.Duration;
+import com.sample.model.Level;
+import com.sample.model.Team;
+import com.sample.model.Type;
+import com.sample.model.Activity;
+import com.sample.model.Goal;
+import com.sample.model.Genre;
  
 rule "Određivanje starosti igrača "
     when
