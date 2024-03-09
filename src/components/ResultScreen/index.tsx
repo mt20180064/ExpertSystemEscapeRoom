@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
+import axios from 'axios';
 
 import { AppLogo, Refresh } from '../../config/icons'
 import { useQuiz } from '../../context/QuizContext'
@@ -82,8 +83,8 @@ const ResultScreen: FC = () => {
     refreshPage()
   }
 
-  const showRooms=()=>{
-     // Initialize the Team object with default values
+  const showRooms= async()=>{
+     
   let team = {
     years: 0,
     numberOfPlayers: 0,
@@ -224,7 +225,33 @@ let genre ={
   console.log(team);
   console.log(room);
   console.log(genre);
+  try {
+    
+    const combinedDto = { 
+      teamDto: team, 
+      genreDto: genre, 
+      roomDto: room 
+    }; 
+    const saveResponse = await axios.post('http://localhost:8085/save', combinedDto, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const processedRoom = saveResponse.data;
 
+    
+    const findRoomsResponse = await axios.get('http://localhost:8085/find-rooms', {
+      params: { ...processedRoom } // Adjust this based on how your backend expects to receive the room criteria
+    });
+
+    const rooms = findRoomsResponse.data;
+
+    // Step 5: Display rooms on the frontend
+    // This will depend on your component structure. For example, you might set state here and map over it to display rooms.
+    console.log(rooms);
+  } catch (error) {
+    console.error('There was an error processing your request:', error);
+  }
   }
   const StyledImageTwo = styled.img`
   width: 150px; 

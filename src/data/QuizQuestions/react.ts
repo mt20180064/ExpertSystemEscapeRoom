@@ -93,19 +93,17 @@ export const react: Topic = {
     },
 
     {
-      question: 'Za koju biste se knjigu od ponuđenih opredelili kao tim? (ako niste čitali birajte na osnovu žanra, slike i kratkog opisa)',
-      choices: [],
+      question: 'Za koju biste se knjigu od ponuđenih opredelili kao tim?',
+      choices: ['Lovac_u_zitu', 'Zlocin_i_kazna', 'Da_Vincijev_kod', 'Gordost_i_predrasude', 'Dnevnik_Ane_Frank', 'Gospodar_prstenova'],
       type: 'MCQs',
-   
-     
     },
     {
-      question: 'Koja slika najbolje opisuje ambijent u kom biste voleli da se nađete svi zajedno?',
+      question: 'Koja reč najbolje opisuje ambijent u kom biste voleli da se nađete svi zajedno?',
       choices: [
-        'Horor',
-        'Misterija',
-        'Naucna fantastika',
-        'Komedija', 'Drama', 'Istorijski', 'Dokumentarni', 'Akcija'
+        'Priroda',
+        'Jednostavnost',
+        'Jeza',
+        'Tehnologija', 'Bajka'
       ],
       type: 'MCQs',
    
@@ -139,8 +137,8 @@ export const react: Topic = {
       question: 'Da niste odlučili da odigrate Escape room, koju od sledećih aktivnosti biste najradije odabrali da radite kao tim?',
       choices: [
         'Paintball',
-        'Pab kviz',
-        'Klub društvenih igara',
+        'Pab_kviz',
+        'Klub_drustvenih_igara',
         'Karaoke'
       ],
       type: 'MCQs',
