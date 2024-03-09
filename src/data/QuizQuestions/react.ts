@@ -37,7 +37,7 @@ export const react: Topic = {
         'Igram sa ekipom',
         'Neki treći događaj koji uključuje veći broj ljudi',
       ],
-      type: 'boolean',
+      type: 'MCQs',
       
       
     },
@@ -50,9 +50,7 @@ export const react: Topic = {
         '5-10',
         '10-15', '15+'
       ],
-      type: 'MAQs',
-    
-      
+      type: 'MCQs',
     },
 
     {
@@ -82,8 +80,6 @@ export const react: Topic = {
         'timski rad'
       ],
       type: 'boolean',
-     
-     
     },
     {
       question: 'Za koji biste se filmski žanr opredelili kada biste svi zajedno (tim) gledali film?',
@@ -94,14 +90,12 @@ export const react: Topic = {
         'Komedija', 'Drama', 'Istorijski', 'Dokumentarni', 'Akcija'
       ],
       type: 'MCQs',
-   
-    
     },
 
     {
       question: 'Za koju biste se knjigu od ponuđenih opredelili kao tim? (ako niste čitali birajte na osnovu žanra, slike i kratkog opisa)',
-      choices: ['True', 'False'],
-      type: 'boolean',
+      choices: [],
+      type: 'MCQs',
    
      
     },

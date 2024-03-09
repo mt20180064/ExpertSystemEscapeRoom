@@ -81,6 +81,151 @@ const ResultScreen: FC = () => {
   const onClickRetry = () => {
     refreshPage()
   }
+
+  const showRooms=()=>{
+     // Initialize the Team object with default values
+  let team = {
+    years: 0,
+    numberOfPlayers: 0,
+    gamesPlayed:0,
+    gamesSolved:0,
+    teamwork: false,
+    goal:"",
+    activityToLike:"",
+    activityToHate:""
+  };
+ let room ={
+  event: false,
+  duration: "HOUR"
+ }
+let genre ={
+  movie:"",
+  book:"",
+  picture:"",
+  debateTopic:""
+}
+  const ageAnswer = result[0]?.selectedAnswer[0]; 
+  if (ageAnswer) {
+    team.years = ageAnswer === '8-15' ? 14 : 25;
+  }
+
+  
+  const playersAnswer = result[1]?.selectedAnswer[0];
+  if (playersAnswer) {
+    switch(playersAnswer) {
+      case '1':
+      case '2-5':
+        team.numberOfPlayers = 4;
+        break;
+      case '6':
+        team.numberOfPlayers = 6;
+        break;
+      case '7-12':
+        team.numberOfPlayers = 9;
+        break;
+      case '13-18':
+        team.numberOfPlayers = 15;
+        break;
+      case '19-24':
+        team.numberOfPlayers = 22;
+        break;
+      default:
+        console.log("Unexpected number of players");
+    }
+  }
+  const eventAnswer = result[2]?.selectedAnswer[0];
+  if (eventAnswer) {
+    room.event = eventAnswer !== 'Igram sa ekipom';
+  }
+  const gamesPlayedAnswer = result[3]?.selectedAnswer[0];
+  if (gamesPlayedAnswer) {
+    switch(gamesPlayedAnswer) {
+      case 'nijednu':
+        team.gamesPlayed = 0;
+        break;
+      case '1-5':
+        team.gamesPlayed = 4;
+        break;
+      case '6-10':
+        team.gamesPlayed = 8;
+        break;
+      case '11-15':
+        team.gamesPlayed = 12;
+        break;
+      case '16+':
+        team.gamesPlayed = 14;
+        break;
+      default:
+        console.log("Unexpected number of games played");
+    }
+  }
+  const gamesSolvedAnswer = result[4]?.selectedAnswer[0]; 
+  if (gamesSolvedAnswer) {
+    switch(gamesSolvedAnswer) {
+      case 'nijednu':
+        team.gamesSolved = 0;
+        break;
+      case '1-5':
+        team.gamesSolved = 3;
+        break;
+      case '6-10':
+        team.gamesSolved = 6;
+        break;
+      case '11-15':
+        team.gamesSolved = 10;
+        break;
+      case '16+':
+        team.gamesSolved = 12;
+        break;
+      default:
+        console.log("Unexpected number of games solved");
+    }
+  }
+
+  const durationAnswer = result[5]?.selectedAnswer[0]; 
+  if (durationAnswer) {
+    if (durationAnswer === 'više od toga') {
+      room.duration = "HOURS"; 
+    }
+  }
+  const teamworkAnswer = result[6]?.selectedAnswer[0]; 
+  if (teamworkAnswer) {
+    team.teamwork = teamworkAnswer === 'timski rad';
+  }
+  const movieGenreAnswer = result[7]?.selectedAnswer[0]; 
+  if (movieGenreAnswer) {
+    genre.movie = movieGenreAnswer;
+  }
+  const bookGenreAnswer = result[8]?.selectedAnswer[0]; 
+  if (bookGenreAnswer) {
+    genre.book = bookGenreAnswer;
+  }
+  const pictureGenreAnswer = result[9]?.selectedAnswer[0]; 
+  if (pictureGenreAnswer) {
+    genre.picture = pictureGenreAnswer;
+  }
+  const goalGenreAnswer = result[10]?.selectedAnswer[0]; 
+  if (goalGenreAnswer) {
+    team.goal = goalGenreAnswer;
+  }
+  const debateTopicAnswer = result[11]?.selectedAnswer[0]; 
+  if (debateTopicAnswer ) {
+    genre.debateTopic = debateTopicAnswer ;
+  }
+  const activityToLikeAnswer = result[12]?.selectedAnswer[0]; 
+  if (activityToLikeAnswer) {
+    team.activityToLike = activityToLikeAnswer;
+  }
+  const activityToHateAnswer = result[13]?.selectedAnswer[0]; 
+  if (activityToHateAnswer) {
+    team.activityToHate = activityToHateAnswer;
+  }
+  
+  console.log(team);
+  console.log(room);
+  console.log(genre);
+
+  }
   const StyledImageTwo = styled.img`
   width: 150px; 
   height: auto; 
@@ -136,7 +281,7 @@ const ResultScreen: FC = () => {
         />
          <Button
           text="Vidi preporuku"
-          onClick={onClickRetry}
+          onClick={showRooms}
           icon={<Refresh />}
           iconPosition="right"
           bold
