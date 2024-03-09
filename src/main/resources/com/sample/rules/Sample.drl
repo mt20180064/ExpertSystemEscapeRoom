@@ -122,7 +122,7 @@ end
 rule "lake sobe jer su pocetnici"
     when
     t: Team(status == Status.BEGINNER)
-        r : Room(event==false && level==null )
+        r : Room(event==false && level==0 )
     then
         r.setLevel (1);
         update( r );
@@ -130,7 +130,7 @@ end
 
 rule "lake sobe jer su deca"
     when
-        r : Room(age==Age.CHILDREN && event==false && level==null )
+        r : Room(age==Age.CHILDREN && event==false && level==0 )
     then
         r.setLevel (1);
         update( r );
@@ -139,7 +139,7 @@ end
 rule "srednje sobe"
     when
     t:Team (status == Status.INTERMEDIATE && numberOfPlayers<6 )
-        r : Room( age==Age.ADULTS && event==false && level==null )
+        r : Room( age==Age.ADULTS && event==false && level==0 )
     then
         r.setLevel (2);
         update( r );
@@ -148,7 +148,7 @@ end
 rule "teske sobe za velike timove srednje jacine"
     when
     t:Team(status == Status.EXPERT )
-        r : Room(age==Age.ADULTS && event==false && level==null)
+        r : Room(age==Age.ADULTS && event==false && level==0)
     then
         r.setLevel (3);
         update( r );
@@ -157,9 +157,25 @@ end
 rule "teske sobe za eksperte"
     when
     t: Team (status==Status.INTERMEDIATE  && numberOfPlayers==6)
-        r : Room(age==Age.ADULTS && event==false && level==null)
+        r : Room(age==Age.ADULTS && event==false && level==0)
     then
         r.setLevel (3);
+        update( r );
+end
+
+rule "nivo kada su dogadjaji se uvek preporucuje da bude srednji kada su odrasli"
+    when
+        r : Room(age==Age.ADULTS && event==true && level==0)
+    then
+        r.setLevel (2);
+        update( r );
+end
+
+rule "nivo kada su dogadjaji se uvek preporucuje da bude lako kada su deca"
+    when
+        r : Room(age==Age.CHILDREN && event==true && level==0)
+    then
+        r.setLevel (1);
         update( r );
 end
 

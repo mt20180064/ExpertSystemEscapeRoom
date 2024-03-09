@@ -49,9 +49,9 @@ private RoomService roomService;
 	    KieContainer kContainer = ks.getKieClasspathContainer();
     	KieSession kSession = kContainer.newKieSession("ksession-rules");
 	    
-		team.setActivityToHate(Enum.valueOf(Activity.class, combinedDto.getTeamDto().getActivityToHate().toUpperCase()));
-	    team.setActivityToLike(Enum.valueOf(Activity.class, combinedDto.getTeamDto().getActivityToLike().toUpperCase()));
-	    team.setGoal(Enum.valueOf(Goal.class, combinedDto.getTeamDto().getGoal().toUpperCase()));
+		team.setActivityToHate(Enum.valueOf(Activity.class, combinedDto.getTeamDto().getActivityToHate()));
+	    team.setActivityToLike(Enum.valueOf(Activity.class, combinedDto.getTeamDto().getActivityToLike()));
+	    team.setGoal(Enum.valueOf(Goal.class, combinedDto.getTeamDto().getGoal()));
 	    team.setGamesPlayed(combinedDto.getTeamDto().getGamesPlayed());
 	    team.setGamesSolved(combinedDto.getTeamDto().getGamesSolved());
 	    team.setNumberOfPlayers(combinedDto.getTeamDto().getNumberOfPlayers());
