@@ -1,9 +1,9 @@
 package com.sample.main.dto;
 
-import com.sample.model.Book;
-import com.sample.model.DebateTopic;
-import com.sample.model.Movie;
-import com.sample.model.Picture;
+import com.sample.main.model.Book;
+import com.sample.main.model.DebateTopic;
+import com.sample.main.model.Movie;
+import com.sample.main.model.Picture;
 
 public class GenreDto {
 	Movie movie;

@@ -1,14 +1,14 @@
 package com.sample.rules;
-import com.sample.model.Room;
-import com.sample.model.Age;
-import com.sample.model.Status;
-import com.sample.model.Duration;
-import com.sample.model.Level;
-import com.sample.model.Team;
-import com.sample.model.Type;
-import com.sample.model.Activity;
-import com.sample.model.Goal;
-import com.sample.model.Genre;
+import com.sample.main.model.Room;
+import com.sample.main.model.Age;
+import com.sample.main.model.Status;
+import com.sample.main.model.Duration;
+import com.sample.main.model.Level;
+import com.sample.main.model.Team;
+import com.sample.main.model.Type;
+import com.sample.main.model.Activity;
+import com.sample.main.model.Goal;
+import com.sample.main.model.Genre;
  
 rule "Određivanje starosti igrača "
     when
@@ -124,7 +124,7 @@ rule "lake sobe jer su pocetnici"
     t: Team(status == Status.BEGINNER)
         r : Room(event==false && level==null )
     then
-        r.setLevel (Level.EASY);
+        r.setLevel (1);
         update( r );
 end
 
@@ -132,7 +132,7 @@ rule "lake sobe jer su deca"
     when
         r : Room(age==Age.CHILDREN && event==false && level==null )
     then
-        r.setLevel (Level.EASY);
+        r.setLevel (1);
         update( r );
 end
 
@@ -141,7 +141,7 @@ rule "srednje sobe"
     t:Team (status == Status.INTERMEDIATE && numberOfPlayers<6 )
         r : Room( age==Age.ADULTS && event==false && level==null )
     then
-        r.setLevel (Level.MEDIUM);
+        r.setLevel (2);
         update( r );
 end
 
@@ -150,7 +150,7 @@ rule "teske sobe za velike timove srednje jacine"
     t:Team(status == Status.EXPERT )
         r : Room(age==Age.ADULTS && event==false && level==null)
     then
-        r.setLevel (Level.HARD);
+        r.setLevel (3);
         update( r );
 end
 
@@ -159,7 +159,7 @@ rule "teske sobe za eksperte"
     t: Team (status==Status.INTERMEDIATE  && numberOfPlayers==6)
         r : Room(age==Age.ADULTS && event==false && level==null)
     then
-        r.setLevel (Level.HARD);
+        r.setLevel (3);
         update( r );
 end
 

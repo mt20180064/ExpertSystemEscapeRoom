@@ -1,8 +1,8 @@
 package com.sample.main.dto;
 
-import com.sample.model.Age;
-import com.sample.model.Duration;
-import com.sample.model.Level;
+import com.sample.main.model.Age;
+import com.sample.main.model.Duration;
+import com.sample.main.model.Level;
 
 public class RoomDto {
 	 

@@ -1,9 +1,13 @@
 package com.sample.main;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.apache.http.HttpStatus;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,16 +19,19 @@ import com.sample.main.dto.CombinedDto;
 import com.sample.main.dto.GenreDto;
 import com.sample.main.dto.RoomDto;
 import com.sample.main.dto.TeamDto;
-import com.sample.model.Activity;
-import com.sample.model.Genre;
-import com.sample.model.Goal;
-import com.sample.model.Room;
-import com.sample.model.Team;
+import com.sample.main.model.Activity;
+import com.sample.main.model.Genre;
+import com.sample.main.model.Goal;
+import com.sample.main.model.Room;
+import com.sample.main.model.Team;
+import com.sample.main.service.RoomService;
 
 @RestController
 @RequestMapping("/")
 public class Controller {
-
+	
+	@Autowired
+private RoomService roomService;
 	
 	 @GetMapping("/hello")
 	    public String hello() {
@@ -74,12 +81,19 @@ public class Controller {
 	    System.out.println(team);
 	    System.out.println(genre);
 	    System.out.println(room);
+	  
 	    return ResponseEntity.status(HttpStatus.SC_ACCEPTED).body(room);
 	 }
 	 
-	 @PostMapping("/genre")
-	 public GenreDto saveGenre (@RequestBody GenreDto genreDto) {
-		 System.out.println(genreDto);
-		 return genreDto;
+	 @GetMapping("/find-rooms")
+	 public ResponseEntity<List<Room>> findRooms (Room r){
+		 if (r == null) {
+	            return ResponseEntity.badRequest().body(Collections.emptyList());
+	        }
+
+	        List<Room> rooms = roomService.findRoomsBasedOnCriteria(r);
+	        return ResponseEntity.ok(rooms);
 	 }
+	 
+	
 }

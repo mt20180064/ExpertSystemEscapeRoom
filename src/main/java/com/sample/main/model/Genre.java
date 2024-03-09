@@ -1,4 +1,4 @@
-package com.sample.model;
+package com.sample.main.model;
 
 public class Genre {
 //ovo su postojeci zanrovi soba
