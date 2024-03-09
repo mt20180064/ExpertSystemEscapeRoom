@@ -1,5 +1,5 @@
 package com.sample.main.model;
 
 public enum Book {
-   CATCHER_IN_THE_RYE, CRIME_AND_THE_PUNISHMENT, THE_DA_VINCI_CODE, PRIDE_AND_PREJUDICE, DIARY_OF_ANNE_FRANK, THE_LORD_OF_THE_RINGS
+	Lovac_u_zitu, Zlocin_i_kazna, Da_Vincijev_kod, Gordost_i_predrasude, Dnevnik_Ane_Frank, Gospodar_prstenova
 }

@@ -1,5 +1,6 @@
 package com.sample.main.model;
 
 public enum Activity {
-PUBQUIZ,PAINTBALL,KARAOKE,GAMESCLUB
+	Paintball,
+    Pab_kviz, Klub_drustvenih_igara, Karaoke
 }

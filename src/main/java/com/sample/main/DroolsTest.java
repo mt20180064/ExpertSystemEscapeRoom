@@ -40,15 +40,15 @@ public class DroolsTest {
         	t.setNumberOfPlayers(5);
         	t.setYears(45);
         	t.setTeamwork(true);
-        	t.setGoal(Goal.ACTION);
+        	t.setGoal(Goal.Akcija);
         	t.setTeamwork(true);
-        	t.setActivityToHate(Activity.PAINTBALL);
-        	t.setActivityToLike(Activity.GAMESCLUB);
+        	t.setActivityToHate(Activity.Paintball);
+        	t.setActivityToLike(Activity.Klub_drustvenih_igara);
         	
-        	g.setMovie(Movie.MYSTERY);
-        	g.setBook(Book.PRIDE_AND_PREJUDICE);
-        	g.setDebateTopic(DebateTopic.HISTORY);
-        	g.setPicture(Picture.CREEPY);
+        	g.setMovie(Movie.Misterija);
+        	g.setBook(Book.Gordost_i_predrasude);
+        	g.setDebateTopic(DebateTopic.Istorija);
+        	g.setPicture(Picture.Jeza);
         	
         	
         	if (t.getNumberOfPlayers()>6 && !r.isEvent()) {

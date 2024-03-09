@@ -165,7 +165,7 @@ end
 
 rule "tip tima takmicari 1"
     when
-     t: Team (goal == Goal.WINNING && teamwork == false && type==null)
+     t: Team (goal == Goal.Pobeda && teamwork == false && type==null)
     then
         t.setType (Type.COMPETITIVE);
         update( t);
@@ -173,7 +173,7 @@ end
 
 rule "tip tima takmicari 2"
     when
-     t: Team (goal == Goal.WINNING && teamwork == true && (activityToLike == Activity.PUBQUIZ || activityToHate == Activity.KARAOKE) && type==null)
+     t: Team (goal == Goal.Pobeda && teamwork == true && (activityToLike == Activity.Pab_kviz || activityToHate == Activity.Karaoke) && type==null)
     then
         t.setType (Type.COMPETITIVE);
         update( t);
@@ -181,7 +181,7 @@ end
 
 rule "tip tima takmicari 3"
     when
-     t: Team (goal == Goal.EXCITEMENT && teamwork == false && activityToLike!=Activity.KARAOKE && type==null)
+     t: Team (goal == Goal.Uzbudjenje && teamwork == false && activityToLike!=Activity.Karaoke && type==null)
     then
         t.setType (Type.COMPETITIVE);
         update( t);
@@ -189,7 +189,7 @@ end
 
 rule "tip tima avanturisti 1"
     when
-     t: Team ((goal == Goal.EXCITEMENT || goal==Goal.ACTION) && teamwork==false && type==null)
+     t: Team ((goal == Goal.Uzbudjenje || goal==Goal.Akcija) && teamwork==false && type==null)
     then
         t.setType (Type.ADVENTUROUS);
         update( t);
@@ -197,7 +197,7 @@ end
 
 rule "tip tima avanturisti 2"
     when
-     t: Team ((goal == Goal.EXCITEMENT || goal==Goal.ACTION) && teamwork==true && activityToLike==Activity.KARAOKE && type==null)
+     t: Team ((goal == Goal.Uzbudjenje || goal==Goal.Akcija) && teamwork==true && activityToLike==Activity.Karaoke && type==null)
     then
         t.setType (Type.ADVENTUROUS);
         update( t);
@@ -205,7 +205,7 @@ end
 
 rule "tip tima avanturisti 3"
     when
-     t: Team ((goal == Goal.EXCITEMENT || goal==Goal.ACTION) && teamwork==true && (activityToHate==Activity.PUBQUIZ || activityToLike==Activity.PAINTBALL) && type==null)
+     t: Team ((goal == Goal.Uzbudjenje || goal==Goal.Akcija) && teamwork==true && (activityToHate==Activity.Pab_kviz || activityToLike==Activity.Paintball) && type==null)
     then
         t.setType (Type.ADVENTUROUS);
         update( t);
@@ -213,7 +213,7 @@ end
 
 rule "tip tima provod 1"
     when
-     t: Team (goal == Goal.FUN  && teamwork==true &&  type==null)
+     t: Team (goal == Goal.Zabava  && teamwork==true &&  type==null)
     then
         t.setType (Type.FUNNY);
         update( t);
@@ -221,7 +221,7 @@ end
 
 rule "tip tima provod 2"
     when
-     t: Team (goal == Goal.FUN  && teamwork==false && activityToLike != Activity.PUBQUIZ && type==null)
+     t: Team (goal == Goal.Zabava  && teamwork==false && activityToLike != Activity.Pab_kviz && type==null)
     then
         t.setType (Type.FUNNY);
         update( t);
@@ -229,7 +229,7 @@ end
 
 rule "tip tima provod 3"
     when
-     t: Team (goal == Goal.EXCITEMENT  && teamwork==true && activityToLike != Activity.PUBQUIZ && activityToHate != Activity.KARAOKE && type==null)
+     t: Team (goal == Goal.Uzbudjenje  && teamwork==true && activityToLike != Activity.Pab_kviz && activityToHate != Activity.Karaoke && type==null)
     then
         t.setType (Type.FUNNY);
         update( t);
@@ -237,7 +237,7 @@ end
 
 rule "tip tima takmicari 4"
     when
-     t: Team (goal == Goal.FUN  && teamwork==false && activityToLike == Activity.PUBQUIZ && type==null)
+     t: Team (goal == Goal.Zabava  && teamwork==false && activityToLike == Activity.Pab_kviz && type==null)
     then
         t.setType (Type.COMPETITIVE);
         update( t);
@@ -245,7 +245,7 @@ end
 
 rule "tip tima avanturisti 4"
     when
-     t: Team (goal == Goal.WINNING  && teamwork==true && activityToLike == Activity.PAINTBALL && activityToHate!=Activity.KARAOKE && type==null)
+     t: Team (goal == Goal.Pobeda  && teamwork==true && activityToLike == Activity.Paintball && activityToHate!=Activity.Karaoke && type==null)
     then
         t.setType (Type.ADVENTUROUS);
         update( t);
@@ -253,7 +253,7 @@ end
 
 rule "tip tima provod 4"
     when
-     t: Team (goal == Goal.WINNING  && teamwork==true && (activityToLike == Activity.KARAOKE || activityToLike==Activity.GAMESCLUB) && type==null)
+     t: Team (goal == Goal.Pobeda  && teamwork==true && (activityToLike == Activity.Karaoke || activityToLike==Activity.Klub_drustvenih_igara) && type==null)
     then
         t.setType (Type.FUNNY);
         update( t);
@@ -261,7 +261,7 @@ end
 
 rule "tip tima provod 5"
     when
-     t: Team (goal == Goal.ACTION  && teamwork==true && (activityToLike == Activity.KARAOKE || activityToLike==Activity.GAMESCLUB) && activityToHate!=Activity.PUBQUIZ && type==null)
+     t: Team (goal == Goal.Akcija  && teamwork==true && (activityToLike == Activity.Karaoke || activityToLike==Activity.Klub_drustvenih_igara) && activityToHate!=Activity.Pab_kviz && type==null)
     then
         t.setType (Type.FUNNY);
         update( t);
@@ -269,7 +269,7 @@ end
 
 rule "tip tima takmicari 5"
     when
-     t: Team (goal == Goal.ACTION  && teamwork==true && activityToLike == Activity.PUBQUIZ  && activityToHate!=Activity.PUBQUIZ && type==null)
+     t: Team (goal == Goal.Akcija  && teamwork==true && activityToLike == Activity.Pab_kviz  && activityToHate!=Activity.Pab_kviz && type==null)
     then
         t.setType (Type.COMPETITIVE);
         update( t);
@@ -278,7 +278,7 @@ end
 rule "ako je odabran horor film"
 no-loop true
     when
-     g: Genre (movie==Movie.HORROR)
+     g: Genre (movie==Movie.Horor)
     then
         g.setHorror(g.getHorror()+3);
         g.setMysterious(g.getMysterious()+1);
@@ -290,7 +290,7 @@ end
 rule "ako je odabrana komedija"
 no-loop true
     when
-     g: Genre (movie==Movie.COMEDY)
+     g: Genre (movie==Movie.Komedija)
     then
         g.setHorror(g.getHorror()+1);
         g.setDetective(g.getDetective()+1);
@@ -302,7 +302,7 @@ end
 rule "ako je odabrana misterija"
 no-loop true
     when
-     g: Genre (movie==Movie.MYSTERY)
+     g: Genre (movie==Movie.Misterija)
     then
         g.setHorror(g.getHorror()+1);
         g.setMysterious(g.getMysterious()+3);
@@ -314,7 +314,7 @@ end
 rule "ako je odabrana drama"
 no-loop true
     when
-     g: Genre (movie==Movie.DRAMA)
+     g: Genre (movie==Movie.Drama)
     then
         g.setHorror(g.getHorror()+1);
         g.setMysterious(g.getMysterious()+1);
@@ -327,7 +327,7 @@ end
 rule "ako je odabrana fantastika"
 no-loop true
     when
-     g: Genre (movie==Movie.SCIFI)
+     g: Genre (movie==Movie.Naucna_fantastika)
     then
         g.setHorror(g.getHorror()+1);
         g.setMysterious(g.getMysterious()+1);
@@ -341,7 +341,7 @@ end
 rule "ako je odabran istorijski film"
 no-loop true
     when
-     g: Genre (movie==Movie.HISTORICAL)
+     g: Genre (movie==Movie.Istorijski)
     then
         g.setMysterious(g.getMysterious()+1);
         g.setDetective(g.getDetective()+2);
@@ -353,7 +353,7 @@ end
 rule "ako je odabran dokumentarac"
 no-loop true
     when
-     g: Genre (movie==Movie.DOCUMENTARY)
+     g: Genre (movie==Movie.Dokumentarni)
     then
         g.setMysterious(g.getMysterious()+1);
         g.setDetective(g.getDetective()+1);
@@ -365,7 +365,7 @@ end
 rule "ako je odabrana akcija"
 no-loop true
     when
-     g: Genre (movie==Movie.ACTION)
+     g: Genre (movie==Movie.Akcija)
     then
         g.setHorror(g.getHorror()+1);
         g.setMysterious(g.getMysterious()+1);
@@ -377,7 +377,7 @@ end
 rule "ako je odabrana knjiga lovac u zitu"
 no-loop true
     when
-     g: Genre (book==Book.CATCHER_IN_THE_RYE)
+     g: Genre (book==Book.Lovac_u_zitu)
     then
         g.setHorror(g.getHorror()+1);
         g.setMysterious(g.getMysterious()+2);
@@ -390,7 +390,7 @@ end
 rule "ako je odabrana knjiga Zlocin i kazna"
 no-loop true
     when
-     g: Genre (book==Book.CRIME_AND_THE_PUNISHMENT)
+     g: Genre (book==Book.Zlocin_i_kazna)
     then
         g.setHorror(g.getHorror()+2);
         g.setMysterious(g.getMysterious()+3);
@@ -403,7 +403,7 @@ end
 rule "ako je odabrana knjiga Da Vincijev kod"
 no-loop true
     when
-     g: Genre (book==Book.THE_DA_VINCI_CODE)
+     g: Genre (book==Book.Da_Vincijev_kod)
     then
         g.setHorror(g.getHorror()+2);
         g.setMysterious(g.getMysterious()+3);
@@ -416,7 +416,7 @@ end
 rule "ako je odabrana knjiga gordost i predrasude"
 no-loop true
     when
-     g: Genre (book==Book.PRIDE_AND_PREJUDICE)
+     g: Genre (book==Book.Gordost_i_predrasude)
     then
         g.setHorror(g.getHorror()+1);
         g.setMysterious(g.getMysterious()+2);
@@ -430,7 +430,7 @@ end
 rule "ako je odabrana knjiga dnevnik Ane Frank"
 no-loop true
     when
-     g: Genre (book==Book.DIARY_OF_ANNE_FRANK)
+     g: Genre (book==Book.Dnevnik_Ane_Frank)
     then
         g.setHorror(g.getHorror()+2);
         g.setMysterious(g.getMysterious()+2);
@@ -443,7 +443,7 @@ end
 rule "ako je odabrana knjiga gospodar prstenova"
 no-loop true
     when
-     g: Genre (book==Book.THE_LORD_OF_THE_RINGS)
+     g: Genre (book==Book.Gospodar_prstenova)
     then
         g.setHorror(g.getHorror()+1);
         g.setMysterious(g.getMysterious()+2);
@@ -457,7 +457,7 @@ end
 rule "ako je tema za debatovanje politika"
 no-loop true
     when
-     g: Genre (debateTopic==DebateTopic.POLITICS)
+     g: Genre (debateTopic==DebateTopic.Politika)
     then
         g.setMysterious(g.getMysterious()+1);
         g.setDetective(g.getDetective()+1);
@@ -467,7 +467,7 @@ end
 rule "ako je tema za debatovanje istorija"
 no-loop true
     when
-     g: Genre (debateTopic==DebateTopic.HISTORY)
+     g: Genre (debateTopic==DebateTopic.Istorija)
     then
         g.setHorror(g.getHorror()+1);
         g.setMysterious(g.getMysterious()+1);
@@ -480,7 +480,7 @@ end
 rule "ako je tema za debatovanje filozofija"
 no-loop true
     when
-     g: Genre (debateTopic==DebateTopic.PHYLOSOPHY)
+     g: Genre (debateTopic==DebateTopic.Filozofija)
     then
         g.setHorror(g.getHorror()+1);
         g.setMysterious(g.getMysterious()+2);
@@ -493,7 +493,7 @@ end
 rule "ako je tema za debatovanje umetnost"
 no-loop true
     when
-     g: Genre (debateTopic==DebateTopic.ARTS)
+     g: Genre (debateTopic==DebateTopic.Umetnost)
     then
         g.setHorror(g.getHorror()+1);
         g.setMysterious(g.getMysterious()+2);
@@ -506,7 +506,7 @@ end
 rule "ako je odabrana slika prirode"
 no-loop true
     when
-     g: Genre (picture==Picture.NATURAL)
+     g: Genre (picture==Picture.Priroda)
     then
         g.setMysterious(g.getMysterious()+1);
         g.setDetective(g.getDetective()+2);
@@ -518,7 +518,7 @@ end
 rule "ako je odabrana slika jednostavnog enterijera "
 no-loop true
     when
-      g: Genre (picture==Picture.SIMPLE)
+      g: Genre (picture==Picture.Jednostavnost)
     then
         g.setHorror(g.getHorror()+1);
         g.setMysterious(g.getMysterious()+2);
@@ -531,7 +531,7 @@ end
 rule "ako je odabrana jeziva slika"
 no-loop true
     when
-     g: Genre (picture==Picture.CREEPY)
+     g: Genre (picture==Picture.Jeza)
     then
         g.setHorror(g.getHorror()+3);
         g.setMysterious(g.getMysterious()+2);
@@ -544,7 +544,7 @@ end
 rule "ako je odabrana slika sa tehnologijom"
 no-loop true
     when
-     g: Genre (picture==Picture.TECH)
+     g: Genre (picture==Picture.Tehnologija)
     then
         g.setHorror(g.getHorror()+1);
         g.setMysterious(g.getMysterious()+2);
@@ -556,7 +556,7 @@ end
 rule "ako je odabrana slika kao iz bajke"
 no-loop true
     when
-     g: Genre (picture==Picture.FAIRYTALE)
+     g: Genre (picture==Picture.Bajka)
     then
         g.setHorror(g.getHorror()+1);
         g.setMysterious(g.getMysterious()+3);
