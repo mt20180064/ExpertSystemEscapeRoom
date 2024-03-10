@@ -2,7 +2,7 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import axios from 'axios';
 import { useState } from 'react';
-import { AppLogo, Refresh } from '../../config/icons'
+import { AppLogo, Next, Refresh } from '../../config/icons'
 import { useQuiz } from '../../context/QuizContext'
 import { device } from '../../styles/BreakPoints'
 import { Flex, LogoContainer, ResizableBox } from '../../styles/Global'
@@ -42,7 +42,41 @@ const QuestionContainer = styled.div`
     flex-direction: column;
   }
 `
+const RecommendedRoomsContainer = styled.div`
+  text-align: center;
+  margin-top: 2rem;
+  
+`;
 
+const RoomListTitle = styled.h3`
+  font-size: 1.75rem;
+  color: 	#AA336A; 
+  margin-bottom: 1.5rem;
+  font-family: 'Arial', sans-serif; /* Change to your preferred font */
+`;
+
+const RoomListItem = styled.li`
+  font-size: 1.25rem;
+  color: #DAA520; 
+  margin-bottom: 0.9rem;
+  font-family: 'Arial', sans-serif; 
+  padding-left: 0.2rem; 
+  position: relative; 
+  margin-bottom: 1rem;
+  color: #FFFFFF; 
+
+  &::before {
+    content: ''; 
+    width: 0.6rem; 
+    height: 0.5rem; 
+    background-color: #FF69B4; 
+    border-radius: 50%; 
+    position: absolute; 
+    left: 0; 
+    top: 50%; 
+    transform: translateY(-50%); 
+  }
+`;
 const QuestionNumber = styled.h6`
   font-size: clamp(16px, 5vw, 24px);
   font-weight: 500;
@@ -302,7 +336,7 @@ const processedRoom = saveResponse.data;
           )
         })}
       </InnerContainer>
-      <Flex flxEnd>
+      <Flex flxEnd >
         <Button
           text="Uradi ispočetka"
           onClick={onClickRetry}
@@ -310,24 +344,25 @@ const processedRoom = saveResponse.data;
           iconPosition="left"
           bold
         />
+   <div style={{ width: '1800px' }}></div>
          <Button
           text="Vidi preporuku"
           onClick={showRooms}
-          icon={<Refresh />}
+          icon={<Next />}
           iconPosition="right"
           bold
         />
       </Flex>
       {rooms.length > 0 && (
-          <div>
-            <h3>Recommended Rooms:</h3>
-            <ul>
-              {rooms.map((room) => (
-                <li key={room.id}>{room.name}</li> // Displaying only the name of each room
-              ))}
-            </ul>
-          </div>
-        )}
+      <RecommendedRoomsContainer>
+        <RoomListTitle>SOBE ZA VAŠU EKIPU:</RoomListTitle>
+        <ul>
+          {rooms.map((room) => (
+            <RoomListItem key={room.id}>{room.name}</RoomListItem> // Using the styled component
+          ))}
+        </ul>
+      </RecommendedRoomsContainer>
+    )}
     </ResultScreenContainer>
   )
 }
