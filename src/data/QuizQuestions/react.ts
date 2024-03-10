@@ -86,7 +86,7 @@ export const react: Topic = {
       choices: [
         'Horor',
         'Misterija',
-        'Naucna fantastika',
+        'Naucna_fantastika',
         'Komedija', 'Drama', 'Istorijski', 'Dokumentarni', 'Akcija'
       ],
       type: 'MCQs',
@@ -149,8 +149,8 @@ export const react: Topic = {
       question: 'Koju od tih aktivnosti biste preskočili radije?',
       choices: [
         'Paintball',
-        'Pab kviz',
-        'Klub društvenih igara',
+        'Pab_kviz',
+        'Klub_drustvenih_igara',
         'Karaoke'
       ],
       type: 'MCQs',

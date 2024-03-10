@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import axios from 'axios';
-
+import { useState } from 'react';
 import { AppLogo, Refresh } from '../../config/icons'
 import { useQuiz } from '../../context/QuizContext'
 import { device } from '../../styles/BreakPoints'
@@ -75,9 +75,14 @@ const Answer = styled.li`
   color: ${({ theme }) => theme.colors.secondaryText};
   margin-top: clamp(13px, calc(10px + 6 * ((100vw - 600px) / 1320)), 16px);
 `
-
+interface Room {
+  id: number;
+  name: string;
+  
+}
 const ResultScreen: FC = () => {
-  const { result } = useQuiz()
+  const { result } = useQuiz();
+  const [rooms, setRooms] = useState<Room[]>([]);
 
   const onClickRetry = () => {
     refreshPage()
@@ -228,26 +233,25 @@ let genre ={
   try {
     
     const combinedDto = { 
-      teamDto: team, 
-      genreDto: genre, 
-      roomDto: room 
-    }; 
-    const saveResponse = await axios.post('http://localhost:8085/save', combinedDto, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const processedRoom = saveResponse.data;
+  teamDto: team, 
+  genreDto: genre, 
+  roomDto: room 
+}; 
+const saveResponse = await axios.post('http://localhost:8085/save', combinedDto, {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+const processedRoom = saveResponse.data;
 
     
     const findRoomsResponse = await axios.get('http://localhost:8085/find-rooms', {
       params: { ...processedRoom } // Adjust this based on how your backend expects to receive the room criteria
     });
 
-    const rooms = findRoomsResponse.data;
+    setRooms(findRoomsResponse.data);
 
-    // Step 5: Display rooms on the frontend
-    // This will depend on your component structure. For example, you might set state here and map over it to display rooms.
+
     console.log(rooms);
   } catch (error) {
     console.error('There was an error processing your request:', error);
@@ -314,6 +318,16 @@ let genre ={
           bold
         />
       </Flex>
+      {rooms.length > 0 && (
+          <div>
+            <h3>Recommended Rooms:</h3>
+            <ul>
+              {rooms.map((room) => (
+                <li key={room.id}>{room.name}</li> // Displaying only the name of each room
+              ))}
+            </ul>
+          </div>
+        )}
     </ResultScreenContainer>
   )
 }
