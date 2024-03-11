@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sample.main.dto.CombinedDto;
-import com.sample.main.dto.GenreDto;
-import com.sample.main.dto.RoomDto;
-import com.sample.main.dto.TeamDto;
 import com.sample.main.model.Activity;
 import com.sample.main.model.Genre;
 import com.sample.main.model.Goal;
