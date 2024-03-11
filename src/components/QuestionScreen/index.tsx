@@ -150,11 +150,11 @@ const QuestionScreen: FC = () => {
           />
         </ButtonWrapper>
       </QuizContainer>
-      {/* timer or finish quiz modal*/}
+
       {(showTimerModal || showResultModal) && (
         <ModalWrapper
-          title={showResultModal ? 'Done!' : 'Your time is up!'}
-          subtitle={`You have attempted ${result.length} questions in total.`}
+          title={showResultModal ? 'Hvala na odgovorima! ' : 'Sada cemo na osnovu njih zakljuciti koja je soba za vas!'}
+          subtitle={`Odgovorili ste ukupno na ${result.length} pitanja. Proverite da li su ovo vasi odgovori:`}
           onClick={handleModal}
           icon={showResultModal ? <CheckIcon /> : <TimerIcon />}
           buttonTitle="prikaži odgovore"
