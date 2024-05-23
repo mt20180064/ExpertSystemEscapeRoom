@@ -53,9 +53,9 @@ const Question: FC<QuestionTypes> = ({
   return (
     <QuestionContainer>
       <QuestionStyle>{question}</QuestionStyle>
-      {/* if question contains code snippet then show code */}
+     
       {code && <CodeSnippet code={code} language="javascript" />}
-      {/* if question contains an image */}
+
       {image && <QuizImage image={image} />}
       <AnswersContainer>
         {choices.map((choice, index) => (

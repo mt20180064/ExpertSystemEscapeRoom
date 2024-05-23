@@ -62,6 +62,12 @@ const ButtonWrapper = styled.div`
   }
 `
 
+const BackButtonWrapper = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+`
+
 const QuestionScreen: FC = () => {
   const [activeQuestion, setActiveQuestion] = useState<number>(0)
   const [selectedAnswer, setSelectedAnswer] = useState<string[]>([])
@@ -80,17 +86,17 @@ const QuestionScreen: FC = () => {
 
   const currentQuestion = questions[activeQuestion]
 
-  const { question, type, choices, image} = currentQuestion
+  const { question, type, choices, image } = currentQuestion
 
   const onClickNext = () => {
-  setResult([...result, { ...currentQuestion, selectedAnswer }]);
+    setResult([...result, { ...currentQuestion, selectedAnswer }]);
 
-  if (activeQuestion !== questions.length - 1) {
-    setActiveQuestion((prev) => prev + 1);
-  } else {
-    setShowResultModal(true);
-  }
-  setSelectedAnswer([]);
+    if (activeQuestion !== questions.length - 1) {
+      setActiveQuestion((prev) => prev + 1);
+    } else {
+      setShowResultModal(true);
+    }
+    setSelectedAnswer([]);
   }
 
   const handleAnswerSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -118,11 +124,15 @@ const QuestionScreen: FC = () => {
     document.body.style.overflow = 'auto'
   }
 
-
- 
+  const goToStartScreen = () => {
+    setCurrentScreen(ScreenTypes.QuizTopicsScreen)
+  }
 
   return (
     <PageCenter>
+      <BackButtonWrapper>
+        <Button text="Vrati se na pocetnu" onClick={goToStartScreen} bold />
+      </BackButtonWrapper>
       <LogoContainer>
         <AppLogo />
       </LogoContainer>
@@ -165,3 +175,4 @@ const QuestionScreen: FC = () => {
 }
 
 export default QuestionScreen
+

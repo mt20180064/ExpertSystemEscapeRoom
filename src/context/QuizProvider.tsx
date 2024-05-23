@@ -55,3 +55,4 @@ const QuizProvider = ({ children }: QuizProviderProps) => {
 }
 
 export default QuizProvider
+

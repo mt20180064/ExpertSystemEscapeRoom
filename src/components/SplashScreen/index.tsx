@@ -30,10 +30,10 @@ const SplashScreen = () => {
     // Set initial logo size
     handleResize()
 
-    // Update logo size on window resize
+   
     window.addEventListener('resize', handleResize)
 
-    // Clean up event listener on component unmount
+   
     return () => {
       window.removeEventListener('resize', handleResize)
     }

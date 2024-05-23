@@ -27,5 +27,17 @@ export type QuizContextTypes = {
   setTimer: Dispatch<SetStateAction<number>>
   endTime: number
   setEndTime: (type: number) => void
+
   
+}
+export interface Room {
+  id: number;
+  name: string;
+  imageUrl: string;
+  location: Location;
+}
+export interface Location {
+  id: number;
+  address: string;
+  company: string;
 }

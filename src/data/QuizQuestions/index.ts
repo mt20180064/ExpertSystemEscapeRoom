@@ -1,5 +1,5 @@
-
 import { react } from './react'
+import { secondQuiz } from './secondQuiz'
 
 // Question Types
 // 1. MCQs | Multiple Choice | single
@@ -24,6 +24,7 @@ export type Topic = {
 }
 
 export const quiz: Record<string, Topic> = {
-  React: react
- 
+  React: react,
+  SecondQuiz: secondQuiz
 }
+

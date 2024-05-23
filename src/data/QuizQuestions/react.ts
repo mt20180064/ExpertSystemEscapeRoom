@@ -24,23 +24,12 @@ export const react: Topic = {
     },
     {
       question: 'Koliko vas hoće da igra sobu?',
-      choices: ['1','2-5','6','7-12','13-18', '19-24'],
+      choices: ['1-2','3-4','5','6'],
       type: 'MCQs',
      
     
     },
-    {
-      question: 'Da li je u pitanju organizacija nekog događaja ili samo dolazite da igrate sa svojom ekipom?',
-      choices: [
-        'Rođendan',
-        'Teambuilding',
-        'Igram sa ekipom',
-        'Neki treći događaj koji uključuje veći broj ljudi',
-      ],
-      type: 'MCQs',
-      
-      
-    },
+    
     {
       question:
         'Koliko escape room igara ste do sada odigrali?',

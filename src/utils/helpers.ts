@@ -6,7 +6,7 @@ export const addLeadingZero = (number: number) => {
   }
 }
 
-// utility function to format the remaining time as minutes:seconds
+
 export function formatTime(time: number) {
   const minutes = Math.floor(time / 60)
   const seconds = time % 60
@@ -46,7 +46,6 @@ export const shuffleArray = <T>(array: T[]): T[] => {
   for (let i = shuffledArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
 
-    // Swap elements using array destructuring
     ;[shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]
   }
 
