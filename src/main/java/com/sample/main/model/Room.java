@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -30,6 +32,11 @@ public class Room {
   Duration duration = Duration.HOUR;
   @Column (name="num_of_rooms_on_loc")
   Long numberOfRoomsOnLocation;
+  @Column (name="imageUrl")
+ private String imageUrl;
+  @ManyToOne
+  @JoinColumn(name = "loc")
+  private Location location;
   
 public Long getId() {
 	return id;
@@ -80,6 +87,12 @@ public void setNumberOfRoomsOnLocation(Long numberOfRoomsOnLocation) {
 
 
 
+public String getImageUrl() {
+	return imageUrl;
+}
+public void setImageUrl(String imageUrl) {
+	this.imageUrl = imageUrl;
+}
 public String getGenre() {
 	return genre;
 }
@@ -101,7 +114,32 @@ public String determineGenre(Genre genre) {
 @Override
 public String toString() {
 	return "Room [id=" + id + ", name=" + name + ", genre=" + genre + ", level=" + level + ", event=" + event + ", age="
-			+ age + ", duration=" + duration + ", numberOfRoomsOnLocation=" + numberOfRoomsOnLocation + "]";
+			+ age + ", duration=" + duration + ", numberOfRoomsOnLocation=" + numberOfRoomsOnLocation + ", imageUrl="
+			+ imageUrl + ", location=" + location + "]";
 }
+public Room(Long id, String name, String genre, int level, boolean event, Age age, Duration duration,
+		Long numberOfRoomsOnLocation, String imageUrl, Location location) {
+	super();
+	this.id = id;
+	this.name = name;
+	this.genre = genre;
+	this.level = level;
+	this.event = event;
+	this.age = age;
+	this.duration = duration;
+	this.numberOfRoomsOnLocation = numberOfRoomsOnLocation;
+	this.imageUrl = imageUrl;
+	this.location = location;
+}
+public Room() {
+	// TODO Auto-generated constructor stub
+}
+public Location getLocation() {
+	return location;
+}
+public void setLocation(Location location) {
+	this.location = location;
+}
+
   
 }

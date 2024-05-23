@@ -21,12 +21,20 @@ public class RoomServiceImpl implements RoomService{
 	
 		   if (room.isEvent()) {
 			  
-	            return roomRepository.findByLevelAndNumberOfRoomsOnLocation(
-	                   room.getLevel(), room.getNumberOfRoomsOnLocation());
+	            return roomRepository.findByNumberOfRoomsOnLocation(
+	                    room.getNumberOfRoomsOnLocation());
 	        } else {
 	            return roomRepository.findByLevelAndGenre(
 	            		room.getLevel(), room.getGenre());
 	        }
+	}
+
+	@Override
+	public List<Room> roomsByNumOnLoc(Long numOfRoomsOnLoc) {
+		
+		return roomRepository.findByNumberOfRoomsOnLocation(
+                numOfRoomsOnLoc);
+		
 	}
 
 	

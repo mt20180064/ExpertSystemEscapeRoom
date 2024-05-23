@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sample.main.dto.CombinedDto;
@@ -78,7 +79,7 @@ private RoomService roomService;
 	    System.out.println(team);
 	    System.out.println(genre);
 	    System.out.println(room);
-	  
+	    
 	    return ResponseEntity.status(HttpStatus.SC_ACCEPTED).body(room);
 	 }
 	 
@@ -90,6 +91,12 @@ private RoomService roomService;
 
 	        List<Room> rooms = roomService.findRoomsBasedOnCriteria(r);
 	        return ResponseEntity.ok(rooms);
+	 }
+	 
+	 @GetMapping("/rooms-by-numOnLoc")
+	 public ResponseEntity<List<Room>> roomsByNumOnLoc (@RequestParam Long numOfRoomsOnLoc){
+		 List<Room> rooms = roomService.roomsByNumOnLoc(numOfRoomsOnLoc);
+		 return ResponseEntity.ok(rooms);
 	 }
 	 
 	

@@ -32,16 +32,15 @@ public class DroolsTest {
         	Genre g = new Genre();
         	
         	
-        	r.setEvent(false);
-            r.setDuration(Duration.HOURS);
+        	r.setEvent(true);
+           // r.setDuration(Duration.HOURS);
             
         	t.setGamesPlayed(4);
         	t.setGamesSolved(4);
         	t.setNumberOfPlayers(5);
         	t.setYears(45);
-        	t.setTeamwork(true);
-        	t.setGoal(Goal.Akcija);
-        	t.setTeamwork(true);
+        	//t.setTeamwork(true);
+        	//t.setGoal(Goal.Akcija);
         	t.setActivityToHate(Activity.Paintball);
         	t.setActivityToLike(Activity.Klub_drustvenih_igara);
         	
