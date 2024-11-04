@@ -4,6 +4,9 @@ import p1 from '../../img/p1.jpeg'
 import p3 from '../../img/p3.jpg'
 import p4 from '../../img/p4.jpeg'
 import p5 from '../../img/p5.jpeg'
+import p10 from '../../img/p10.jpg'
+import p11 from '../../img/p11.jpg'
+import e from '../../img/e.png'
 import { useQuiz } from '../../context/QuizContext'
 import { device } from '../../styles/BreakPoints'
 import {
@@ -16,8 +19,36 @@ import { ScreenTypes } from '../../types'
 
 import Button from '../ui/Button'
 
+const BorderContainer = styled.div`
+  border:8px solid transparent; 
+  border-image: url(${e}) 60 fill round; 
+  border-radius: 20px;
+  padding: 0; 
+  margin: 0;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const InnerContainer = styled.div`
+  width: 100%;
+  padding: 20px; /* Add padding here if needed */
+`
+
+const Watermark = styled.div`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-style: italic;
+  font-size: 24px;
+  color: #ccc;
+  opacity: 0.5;
+`
+
 const Heading = styled.h2`
   font-size: 32px;
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
   font-weight: 700;
   margin-bottom: 20px;
   text-align: center;
@@ -25,10 +56,12 @@ const Heading = styled.h2`
 
 const DetailText = styled.p`
   font-weight: 500;
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
   font-size: 20px;
   line-height: 29px;
   text-align: center;
 `
+
 const StyledImageTwo = styled.img`
   width: 150px;
   height: auto;
@@ -39,7 +72,7 @@ const StyledImageTwo = styled.img`
 const StyledImageContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0 auto;
+  width: 100%;
   margin-bottom: 30px;
   margin-top: 30px;
 `
@@ -72,84 +105,36 @@ const Overlay = styled.div`
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-  color: white;
-  font-size: 18px;
+  color: ${({ theme }) => theme.colors.themeColor};
+  font-size: 24px;
   text-align: center;
   padding: 20px;
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
 `
 
-const SelectButtonContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 60%;
-  gap: 30px;
-  margin-top: 40px;
-  margin-bottom: 45px;
-  @media ${device.md} {
-    row-gap: 20px;
-    column-gap: 20px;
-    max-width: 100%;
-  }
-`
-
-interface SelectButtonProps {
-  active: boolean
-  disabled?: boolean
-}
-
-const SelectButton = styled.div<SelectButtonProps>`
-  background-color: ${({ disabled, theme }) =>
-    disabled ? `${theme.colors.disabledCard}` : `${theme.colors.selectTopicBg}`};
-  border: ${({ active, theme }) =>
-    active
-      ? `2px solid ${theme.colors.themeColor}`
-      : `1px solid ${theme.colors.disabledButton}`};
-  transition: background-color 0.4s ease-out;
-  border-radius: 10px;
-  padding: 14px 10px;
-  display: flex;
-  align-items: center;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  @media ${device.md} {
-    padding: 10px;
-    tap-highlight-color: transparent;
-    -webkit-tap-highlight-color: transparent;
-  }
-`
-
-const LayoutContainer = styled.div`
+const OldPaperTextContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
   width: 100%;
-  padding: 20px;
 `
 
-const SideSection = styled.div`
-  width: 20%;
+const OldPaperText = styled.p`
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-size: 24px;
+  font-style: italic;
+  background: url('/path/to/old-paper-background.png'); 
   padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  width: 49%; 
 `
 
 const MainContent = styled.div`
-  width: 60%;
-`
-
-const Image = styled.img`
   width: 100%;
-  margin-bottom: 20px;
-`
-
-const Title = styled.h3`
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 10px;
-`
-
-const Paragraph = styled.p`
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 20px;
+  padding: 0;
+  margin: 0;
 `
 
 const QuizTopicsScreen: React.FC = () => {
@@ -169,52 +154,54 @@ const QuizTopicsScreen: React.FC = () => {
 
   return (
     <PageCenter light justifyCenter>
-      <LayoutContainer>
-        <SideSection>
-          <Image src={p1} alt="Side image 1" />
-          <Image src={p1} alt="Side image 2" />
-          <Image src={p1} alt="Side image 3" />
-        </SideSection>
-        <MainContent>
-          <CenterCardContainer>
-            <LogoContainer>
-              <StyledImageTwo src={p3} alt="logo" />
-            </LogoContainer>
-            <Heading>
-              Želite da igrate Escape Room, ali ne znate koja je igra prava za vas? <HighlightedText> NA PRAVOM STE MESTU!</HighlightedText>
-            </Heading>
-            <DetailText>Odgovorite na nekoliko pitanja i odabraćemo sobu umesto vas</DetailText>
-            <StyledImageContainer>
-              <ClickableImage
-                selected={selectedImage === 'React'}
-                onClick={() => handleImageClick('React')}
-              >
-                <img src={p4} alt="Igra sa ekipom" />
-                <Overlay className="overlay">Igra sa ekipom</Overlay>
-              </ClickableImage>
-              <ClickableImage
-                selected={selectedImage === 'SecondQuiz'}
-                onClick={() => handleImageClick('SecondQuiz')}
-              >
-                <img src={p5} alt="Organizacija dogadjaja" />
-                <Overlay className="overlay">Organizacija dogadjaja (Timbilding, rodjendan, proslava...)</Overlay>
-              </ClickableImage>
-            </StyledImageContainer>
-            <Button text="Počni" onClick={goToQuestionScreen} bold />
-          </CenterCardContainer>
-        </MainContent>
-        <SideSection>
-          <Title>Title 1</Title>
-          <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Paragraph>
-          <Title>Title 2</Title>
-          <Paragraph>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
-          <Title>Title 3</Title>
-          <Paragraph>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</Paragraph>
-        </SideSection>
-      </LayoutContainer>
+      <BorderContainer>
+        <Watermark>Atikus</Watermark>
+        <InnerContainer>
+          <MainContent>
+            <CenterCardContainer>
+              <LogoContainer>
+                <StyledImageTwo src={p3} alt="logo" />
+              </LogoContainer>
+              <Heading>
+                Želite da igrate Escape Room, ali ne znate koja je igra prava za vas? 
+              </Heading>
+              <DetailText><HighlightedText>Odgovorite na nekoliko pitanja i Atikus će pronaći prave sobe za vas!</HighlightedText> Atikus je vaš lični vodič kroz svet Escape room igara. Koji god da je razlog iz kog ste odlučili da zavirite u ovaj svet, on će učiniti da iz njega nikada ne poželite da izađete!</DetailText>
+              <OldPaperTextContainer>
+                <OldPaperText>
+                  Ako ste ekipa drugara koja želi kvalitetno druženje i čuli ste za escape room i ne znate od kog da krenete, ili iskusni eskejperi koji su već odigrali nekoliko soba, za nekoliko minuta znaćete koji sledeći escape room da posetite jer najviše odgovara vašoj ekipi i interesovanjima!
+                </OldPaperText>
+                <OldPaperText>
+                  Ako hoćete da organizujete proslavu rođendana za svoje dete/društvo ili teambuilding, bilo kakvu vrstu proslave i čuli ste da je escape room mesto sa dobrom atmosferom u kojoj se razvija timski duh, ali ne znate koji odgovara potrebama vašeg događaja, pomoći ćemo vam!
+                </OldPaperText>
+              </OldPaperTextContainer>
+              <StyledImageContainer>
+                <ClickableImage
+                  selected={selectedImage === 'React'}
+                  onClick={() => handleImageClick('React')}
+                >
+                  <img src={p10} alt="Igra sa ekipom" />
+                  <Overlay className="overlay">Igra sa ekipom</Overlay>
+                </ClickableImage>
+                <ClickableImage
+                  selected={selectedImage === 'SecondQuiz'}
+                  onClick={() => handleImageClick('SecondQuiz')}
+                >
+                  <img src={p11} alt="Organizacija dogadjaja" />
+                  <Overlay className="overlay">Organizacija dogadjaja (Timbilding, rodjendan, proslava...)</Overlay>
+                </ClickableImage>
+              </StyledImageContainer>
+              <Button text="Počni" onClick={goToQuestionScreen} bold />
+            </CenterCardContainer>
+          </MainContent>
+        </InnerContainer>
+      </BorderContainer>
     </PageCenter>
   )
 }
 
 export default QuizTopicsScreen
+
+
+
+
 

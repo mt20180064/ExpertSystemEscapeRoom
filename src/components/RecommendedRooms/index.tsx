@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { device } from '../../styles/BreakPoints';
-import { Room } from '../../types';  
+import { Room } from '../../types'; 
+
 const RecommendedRoomsContainer = styled.div`
   max-width: 900px;
   margin: 60px auto;
@@ -12,7 +13,7 @@ const RecommendedRoomsContainer = styled.div`
   }
 `;
 
-const RoomListTitle = styled.h3`
+const SectionTitle = styled.h3`
   font-size: 1.75rem;
   color: #AA336A; 
   margin-bottom: 1.5rem;
@@ -37,8 +38,8 @@ const RoomLink = styled.a`
 const RoomImage = styled.img`
   width: 100%;
   border-radius: 8px;
-  object-fit: cover;  /* Dodaj ovo da bi slike bile prilagođene okviru */
-  height: 200px;     /* Dodaj visinu da bi sve slike imale istu visinu */
+  object-fit: cover;  
+  height: 200px;     
 `;
 
 const RoomNameOverlay = styled.div`
@@ -56,7 +57,7 @@ const RoomNameOverlay = styled.div`
 
 const RoomImageContainer = styled.div`
   position: relative;
-  overflow: hidden;  /* Dodaj ovo da bi se slika ispravno prikazivala u okviru */
+  overflow: hidden;  
 `;
 
 interface RecommendedRoomsProps {
@@ -64,13 +65,31 @@ interface RecommendedRoomsProps {
 }
 
 const RecommendedRooms: FC<RecommendedRoomsProps> = ({ rooms }) => {
+  const shuffledRooms = rooms.sort(() => 0.5 - Math.random());
+  const topRooms = shuffledRooms.slice(0, 3);
+  const remainingRooms = shuffledRooms.slice(3);
+
   return (
     <RecommendedRoomsContainer>
-      <RoomListTitle>SOBE ZA VAŠU EKIPU:</RoomListTitle>
+      <SectionTitle>TOP 3 SOBE ZA VAS:</SectionTitle>
       <RoomList>
-        {rooms.map((room) => (
+        {topRooms.map((room) => (
           <RoomListItem key={room.id}>
-            <RoomLink href="https://www.google.com">
+            <RoomLink href={room.destination}>
+              <RoomImageContainer>
+                <RoomImage src={room.imageUrl} alt={room.name} />
+                <RoomNameOverlay>{room.name}</RoomNameOverlay>
+              </RoomImageContainer>
+            </RoomLink>
+          </RoomListItem>
+        ))}
+      </RoomList>
+
+      <SectionTitle>evo jos nekih soba koje bi vam se svidele!</SectionTitle>
+      <RoomList>
+        {remainingRooms.map((room) => (
+          <RoomListItem key={room.id}>
+            <RoomLink href={room.destination}>
               <RoomImageContainer>
                 <RoomImage src={room.imageUrl} alt={room.name} />
                 <RoomNameOverlay>{room.name}</RoomNameOverlay>
@@ -84,6 +103,7 @@ const RecommendedRooms: FC<RecommendedRoomsProps> = ({ rooms }) => {
 }
 
 export default RecommendedRooms;
+
 
 
 

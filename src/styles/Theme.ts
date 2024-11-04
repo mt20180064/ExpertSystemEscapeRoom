@@ -3,8 +3,8 @@ import { Theme } from './styled'
 export const themes: Record<string, Theme> = {
   light: {
     colors: {
-      primaryText: '#11052C', // question text color
-      secondaryText: '#2D264B', // answer text color
+      primaryText: '#11052C', 
+      secondaryText: '#2D264B', 
       themeText: '#000000',
       themeColor: '#800080',
       themeGradient: 'linear-gradient(to right,#800080, #FFC0CB)',
@@ -16,8 +16,8 @@ export const themes: Record<string, Theme> = {
       outlineButtonText: '#800080',
       buttonBackground: 'linear-gradient(90.04deg, #800080 0.03%, #FFC0CB 99.96%)',
       selectedAnswer: '#FFD6FF',
-      infoText: '#FF783F', // skip tag text
-      infoBackground: '#ffb23f26', // skip tag background
+      infoText: '#FF783F', 
+      infoBackground: '#ffb23f26', 
       border: '#EAEAEA',
       answerBg: '#ffffff',
       disabledCard: '#fbf4ecbc',

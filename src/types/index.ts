@@ -35,6 +35,7 @@ export interface Room {
   name: string;
   imageUrl: string;
   location: Location;
+  destination: string
 }
 export interface Location {
   id: number;

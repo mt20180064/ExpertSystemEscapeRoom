@@ -1,4 +1,4 @@
-// import original module declarations
+
 import 'styled-components'
 
 export interface Theme {
