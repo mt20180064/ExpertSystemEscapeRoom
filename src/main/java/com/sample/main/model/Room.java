@@ -34,6 +34,8 @@ public class Room {
   Long numberOfRoomsOnLocation;
   @Column (name="imageUrl")
  private String imageUrl;
+  @Column(name="destination")
+  private String destination;
   @ManyToOne
   @JoinColumn(name = "loc")
   private Location location;
@@ -111,14 +113,30 @@ public String determineGenre(Genre genre) {
     
     return "UNDETERMINED"; 
 }
+
+public String getDestination() {
+	return destination;
+}
+public void setDestination(String destination) {
+	this.destination = destination;
+}
 @Override
 public String toString() {
 	return "Room [id=" + id + ", name=" + name + ", genre=" + genre + ", level=" + level + ", event=" + event + ", age="
 			+ age + ", duration=" + duration + ", numberOfRoomsOnLocation=" + numberOfRoomsOnLocation + ", imageUrl="
-			+ imageUrl + ", location=" + location + "]";
+			+ imageUrl + ", destination=" + destination + ", location=" + location + "]";
+}
+public Room() {
+	// TODO Auto-generated constructor stub
+}
+public Location getLocation() {
+	return location;
+}
+public void setLocation(Location location) {
+	this.location = location;
 }
 public Room(Long id, String name, String genre, int level, boolean event, Age age, Duration duration,
-		Long numberOfRoomsOnLocation, String imageUrl, Location location) {
+		Long numberOfRoomsOnLocation, String imageUrl, String destination, Location location) {
 	super();
 	this.id = id;
 	this.name = name;
@@ -129,15 +147,7 @@ public Room(Long id, String name, String genre, int level, boolean event, Age ag
 	this.duration = duration;
 	this.numberOfRoomsOnLocation = numberOfRoomsOnLocation;
 	this.imageUrl = imageUrl;
-	this.location = location;
-}
-public Room() {
-	// TODO Auto-generated constructor stub
-}
-public Location getLocation() {
-	return location;
-}
-public void setLocation(Location location) {
+	this.destination = destination;
 	this.location = location;
 }
 
